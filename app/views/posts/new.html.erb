@@ -1,0 +1,45 @@
+<h3>Post Form</h3>
+<%# Submission form keywords/attributes for 'input' are 'type', 'id' equaling '<instance>_<variable/column>', and 'name' equaling '<instance>[<variable/column]' %>
+
+<%# What's giving to the 'name' attribute within form-input acts as the key in a hash given to params, which, will be accessible elsewhere %>
+
+<%# Form attribute 'action' equaling the path that should be taken upon form submission %>
+
+<%# Previous form tag %>
+<!-- <form action="<%= posts_path %>" method="POST"> -->
+
+<%# Next updated form tag using ActionView helper method %>
+
+ <!-- This entire form is the second to last refactored state, and may be replaced with form all the way below
+    <%= form_tag posts_path do %>
+    <label>Post title</label>
+    <input type="text" id="post_title" name="post[title]"><br>
+
+    <label>Post description</label>
+    <textarea name="post[description]" id="post_description"></textarea><br>
+-->
+<%# Previous hidden input tag %>
+    <!-- <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"> -->
+
+<%# Next updated hidden input tag using ActionView helper method %>
+<%# Actually this hidden_field_tag is redundant and may be removed %>
+    <!-- <%= hidden_field_tag :authenticity_token, form_authenticity_token %> -->
+    <!-- Also part of the second to last refactor and may be replaced
+
+    <input type="submit" value='Submit Post'>
+    <% end %>
+
+    -->
+<%# </form> %>
+
+<!-- Final Refactor -->
+<%# Proper syntax for fully refactored form template rendering and use of rails' ActionView helper methods %>
+<%= form_tag posts_path do %>
+    <label>Post title:</label>
+    <%= text_field_tag :'post[title]' %>
+    <label>Post description:</label>
+    <%= text_area_tag :'post[description]' %>
+
+    <%= submit_tag "Submit Post" %>
+<% end %>
+<%= params.inspect %>
